@@ -1347,6 +1347,9 @@ static void UpdateStartButtonPosition(const TaskbarInfo* taskBar, const WINDOWPO
 		// We will shift our Aero button to cover original button
 		if (IsWin11() && (x == info.rcMonitor.left) && (GetStartButtonType() == START_BUTTON_AERO) && !g_epTaskbar)
 			x += ScaleForDpi(taskBar->taskBar, 6);
+
+		if (GetStartButtonType() == START_BUTTON_CUSTOM)
+			x += ScaleForDpi(taskBar->taskBar, GetSettingInt(L"StartButtonOffset"));
 	}
 
 	RECT rcButton = { x, y, x + taskBar->startButtonSize.cx, y + taskBar->startButtonSize.cy };
